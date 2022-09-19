@@ -7,6 +7,11 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 
+const handleLanguages = {
+	'javascript': /console.log\([^\s]+\)?/g,
+	'c': /printf\(.+\)?/g,
+}
+
 let doc = vscode.window.activeTextEditor.document
 
 function activate(context) {
@@ -17,15 +22,23 @@ function activate(context) {
 
 	
 	let disposable = vscode.commands.registerCommand('cleanconsole.cleanConsole', function () {
-		// The code you place here will be executed every time your command is executed
-		let lineToDelete = getLogLine();
-		deleteLine(lineToDelete);
-		if(lineToDelete.length > 0){
-			vscode.window.showInformationMessage("not empty");
-		} else {
-			vscode.window.showInformationMessage("empty");
-		}
-		// Display a message box to the user
+		// Get the current language to update the regex
+		vscode.window.showInformationMessage(vscode.window.activeTextEditor.document.languageId);
+		
+		// Verify if the language is supported
+		if(isLanguageSupported(handleLanguages)){
+			// Get the array of lines index that contain the log keyword
+			let lineToDelete = getLogLine();
+			// if the array is not empty, delete the lines
+			if(lineToDelete.length > 0){
+				deleteLine(lineToDelete);
+			} else {
+				vscode.window.showErrorMessage(" Nothing to delete");
+			}
+		} else [
+			vscode.window.showErrorMessage(" Language not supported yet")
+		]
+
 		
 		
 	});
@@ -34,18 +47,32 @@ function activate(context) {
 }
 
 function deleteLine(lineNumber) {
-
 		vscode.window.activeTextEditor.edit(editBuilder => {
+			// foreach line in array delete the line
 			for(let i = 0; i < lineNumber.length; i++){
 				editBuilder.delete(new vscode.Range(lineNumber[i], 0, lineNumber[i], 1000));
 			}
+		})
+		.then(success => {
+			if (success) {
+				vscode.window.showInformationMessage(" Succefully deleted");
+			} else {
+				vscode.window.showInformationMessage(" Failed");
+			}
 		});
+}
+
+function isLanguageSupported(handleLanguages) {
+	if(handleLanguages[doc.languageId] !== undefined){
+		return true;
+	}
+	return false;
 }
 
 // Return an array of lines that contain the log keyword
 function getLogLine() {
 	let positionArray = [];
-	let regex = new RegExp(/console.log\([^\s]+\)?/g);
+	let regex = handleLanguages[doc.languageId];
 	for (let i = 0; i < doc.lineCount; i++) {
 		if(regex.test(doc.lineAt(i).text)){
 			positionArray.push(i);

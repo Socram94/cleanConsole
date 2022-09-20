@@ -74,10 +74,9 @@ function deleteLine(lineNumber) {
 		})
 		.then(success => {
 			if (success) {
-				
-				vscode.window.showInformationMessage(" line deleted" + doc.lineCount);
+				vscode.window.showInformationMessage("Succeffully deleted");
 			} else {
-				vscode.window.showInformationMessage(" Failed");
+				vscode.window.showInformationMessage("An error occured");
 			}
 		});
 }
@@ -97,9 +96,8 @@ function getLogLine() {
 	for (let i = 0; i < doc.lineCount; i++) {
 		if(regex.test(doc.lineAt(i).text)){
 			positionArray.push(i);
-			
 			// i-- is indispensable to avoid skipping a line
-			
+			i--;
 		}
 	}
 	return positionArray;

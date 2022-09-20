@@ -69,7 +69,7 @@ function deleteLine(lineNumber) {
 		vscode.window.activeTextEditor.edit(editBuilder => {
 			// foreach line in array delete the line
 			for(let i = 0; i < lineNumber.length; i++){
-				editBuilder.delete(new vscode.Range(lineNumber[i], 0, lineNumber[i], 1000));
+				i == 0 && lineNumber[i] == 0 ? editBuilder.delete(new vscode.Range(lineNumber[i], 0, lineNumber[i], 1000)) : editBuilder.delete(new vscode.Range(lineNumber[i] - 1, 1000, lineNumber[i], 1000));
 			}
 		})
 		.then(success => {

@@ -75,7 +75,7 @@ function deleteLine(lineNumber) {
 		})
 		.then(success => {
 			if (success) {
-				vscode.window.showInformationMessage("Successfully deleted " + lineNumber.length + " lines");
+				console.log();
 			} else {
 				vscode.window.showInformationMessage("An error occured");
 			}
@@ -113,30 +113,3 @@ module.exports = {
 	activate,
 	deactivate
 }
-
-
-/*
-let msg: String = "hello world";
-console.log(msg);
-
-let submsg: String = msg.substring(0, 5);
-console.log(submsg);
-
-let final = submsg + "!";
-console.log(final);
-
-#include <stdio.h>
-
-int main(int argc, char** argv){
-
-    int x = 5;
-    printf("%d", x);
-    if (x > 5){
-        x -= 1;
-        printf("x", x);
-    }
-    else{
-        x += 1;
-        printf("x", x);
-    }
-}*/

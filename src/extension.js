@@ -6,21 +6,21 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 
+// Current handle languages
 const handleLanguages = {
-	'javascript': /console.log\([^\s]+\)?/g,
-	'typescript': /console.log\([^\s]+\)?/g,
+	'javascript': /console.[^\s]+\([^\s]+\)?/g,
+	'typescript': /console.[^\s]+\([^\s]+\)?/g,
 	'c': /printf\([^\s]+\)?/g,
 	'cpp': /printf\([^\s]+\)?/g,
-	'csharp': /Console.WriteLine\([^\s]+\)?/g,
+	'csharp': /Console.[^\s]+\([^\s]+\)?/g,
 	'java': /System.out.println\([^\s]+\)?/g,
 	'php': /echo [^\s]+\)?/g,
 	'python': /print\([^\s]+\)?/g,
 	'ruby': /puts\([^\s]+\)?/g,
 	'go': /fmt.Println\([^\s]+\)?/g,
-	'rust': /println\([^\s]+\)?/g,
+	'rust': /println.?\([^\s]+\)?/g, 
 	'perl': /print\([^\s]+\)?/g,
 	'lua': /print\([^\s]+\)?/g,
-	'powershell': /Write-Host\([^\s]+\)?/g, // à vérifier
 	'fsharp': /printfn\([^\s]+\)?/g, 
 	'kotlin': /println\([^\s]+\)?/g,
 	'objective-c': /NSLog\([^\s]+\)?/g,
@@ -41,7 +41,7 @@ const handleLanguages = {
 	'xquery': /trace\([^\s]+\)?/g,
 }
 
-let doc = vscode.window.activeTextEditor.document
+
 
 function activate(context) {
 
@@ -69,19 +69,22 @@ function deleteLine(lineNumber) {
 		vscode.window.activeTextEditor.edit(editBuilder => {
 			// foreach line in array delete the line
 			for(let i = 0; i < lineNumber.length; i++){
-				i == 0 && lineNumber[i] == 0 ? editBuilder.delete(new vscode.Range(lineNumber[i], 0, lineNumber[i], 1000)) : editBuilder.delete(new vscode.Range(lineNumber[i] - 1, 1000, lineNumber[i], 1000));
+				// ternaire to avoid blank space
+				i == 0 && lineNumber[i] == 0 ? editBuilder.delete(new vscode.Range(lineNumber[i] + 1, 0, lineNumber[i], 0)) : editBuilder.delete(new vscode.Range(lineNumber[i] - 1, 1000, lineNumber[i], 1000));
 			}
 		})
 		.then(success => {
 			if (success) {
-				vscode.window.showInformationMessage("Succeffully deleted");
+				vscode.window.showInformationMessage("Successfully deleted " + lineNumber.length + " lines");
 			} else {
 				vscode.window.showInformationMessage("An error occured");
 			}
 		});
 }
 
+// Return a true if the current language is supported
 function isLanguageSupported(handleLanguages) {
+	let doc = vscode.window.activeTextEditor.document
 	if(handleLanguages[doc.languageId] !== undefined){
 		return true;
 	}
@@ -90,13 +93,14 @@ function isLanguageSupported(handleLanguages) {
 
 // Return an array of lines that contain the log keyword
 function getLogLine() {
+	let doc = vscode.window.activeTextEditor.document
 	let positionArray = [];
 	let regex = handleLanguages[doc.languageId];
-	vscode.window.showInformationMessage("line " + doc.lineCount + " contains log");
+	// verify each line of th current document
 	for (let i = 0; i < doc.lineCount; i++) {
 		if(regex.test(doc.lineAt(i).text)){
 			positionArray.push(i);
-			// i-- is indispensable to avoid skipping a line
+			// i-- use to avoid skipping a line
 			i--;
 		}
 	}
@@ -110,3 +114,29 @@ module.exports = {
 	deactivate
 }
 
+
+/*
+let msg: String = "hello world";
+console.log(msg);
+
+let submsg: String = msg.substring(0, 5);
+console.log(submsg);
+
+let final = submsg + "!";
+console.log(final);
+
+#include <stdio.h>
+
+int main(int argc, char** argv){
+
+    int x = 5;
+    printf("%d", x);
+    if (x > 5){
+        x -= 1;
+        printf("x", x);
+    }
+    else{
+        x += 1;
+        printf("x", x);
+    }
+}*/

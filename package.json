@@ -1,11 +1,32 @@
 {
   "name": "cleanconsole",
-  "displayName": "cleanConsole",
-  "description": "Little extension to help developpers",
+  "displayName": "Clean Console",
+  "description": "Clean console help developper to clean the console",
+  "publisher": "Socram94",
   "version": "0.0.1",
+  "author": {
+    "name": "Alex"
+  },
   "engines": {
     "vscode": "^1.71.0"
   },
+  "icon": "images/highlight-line-logo.png",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/Socram94/cleanConsole"
+  },
+  "keywords": [
+    "clean",
+    "clean console",
+    "console",
+    "logs",
+    "delete",
+    "delete console",
+    "delete console logs",
+    "delete logs",
+    "help delete",
+    "help delete logs"
+],
   "categories": [
     "Other"
   ],
@@ -19,6 +40,7 @@
       "title": "Clean Console"
     }]
   },
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",

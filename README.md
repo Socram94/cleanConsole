@@ -22,5 +22,5 @@ This is the first release of the extension, you can use it only feature without 
 
 ## Information
 
-If you favorite language isn't currently supported you can submit a pull request to add it to the list !
+If you favorite language isn't currently supported, you can submit a pull request to add it to the list !
 

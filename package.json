@@ -1,7 +1,7 @@
 {
   "name": "cleanconsole",
   "displayName": "Clean Console",
-  "description": "Clean console help developper to clean the console",
+  "description": "Clean console is a little tool used to clean the console output by delete log command in your current code file.",
   "publisher": "Socram94",
   "version": "1.0.1",
   "author": {

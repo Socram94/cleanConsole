@@ -3,7 +3,7 @@
   "displayName": "Clean Console",
   "description": "Clean console help developper to clean the console",
   "publisher": "Socram94",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Alex"
   },
@@ -12,10 +12,9 @@
   },
   "icon": "images/clean.png",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/Socram94/cleanConsole"
+    "type": "git",
+    "url": "https://github.com/Socram94/cleanConsole"
   },
-  
   "keywords": [
     "clean",
     "clean console",
@@ -27,7 +26,7 @@
     "delete logs",
     "help delete",
     "help delete logs"
-],
+  ],
   "categories": [
     "Other"
   ],
@@ -36,10 +35,12 @@
   ],
   "main": "src/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "cleanconsole.cleanConsole",
-      "title": "Clean Console"
-    }]
+    "commands": [
+      {
+        "command": "cleanconsole.cleanConsole",
+        "title": "Clean Console"
+      }
+    ]
   },
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {

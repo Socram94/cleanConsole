@@ -41,7 +41,7 @@ const handleLanguages = {
 	'xquery': /trace\([^\s]+\)?/g,
 }
 
-let doc = vscode.window.activeTextEditor.document
+
 
 function activate(context) {
 
@@ -84,6 +84,7 @@ function deleteLine(lineNumber) {
 
 // Return a true if the current language is supported
 function isLanguageSupported(handleLanguages) {
+	let doc = vscode.window.activeTextEditor.document
 	if(handleLanguages[doc.languageId] !== undefined){
 		return true;
 	}
@@ -92,6 +93,7 @@ function isLanguageSupported(handleLanguages) {
 
 // Return an array of lines that contain the log keyword
 function getLogLine() {
+	let doc = vscode.window.activeTextEditor.document
 	let positionArray = [];
 	let regex = handleLanguages[doc.languageId];
 	// verify each line of th current document
@@ -111,4 +113,3 @@ module.exports = {
 	activate,
 	deactivate
 }
-

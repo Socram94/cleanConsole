@@ -20,7 +20,7 @@ Regex can have some problems, you can add an issue or submit a pull request to c
 
 This is the first release of the extension, you can use it only feature without moderation
 
-### 1.0.1
+### 1.1.0
 
 Bug fix
 

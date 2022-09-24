@@ -75,6 +75,7 @@ function deleteLine(lineNumber) {
 		})
 		.then(success => {
 			if (success) {
+				// pretty weird bug, without code the extension doesn't work (here console.log)
 				console.log();
 			} else {
 				vscode.window.showInformationMessage("An error occured");

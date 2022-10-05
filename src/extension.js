@@ -40,10 +40,8 @@ function activate(context) {
 		if(lineCount.length > 0){
 			window.showInformationMessage("Number of log lines : " + lineCount.length);
 		} else {
-			window.showErrorMessage(" Nothing to delete");
+			window.showInformationMessage("No log line in this file");
 		}
-		
-
 	});
 	
 	context.subscriptions.push([disposable, Sdisposable]);

@@ -16,6 +16,16 @@ Regex can have some problems, you can add an issue or submit a pull request to c
 
 ## Release Notes
 
+### 1.1.1
+
+New feature, you can now count the number of log line in your current file !
+You can easily test it with running clean console list command.
+
+The code have been refactored :
+
+- lib.js contain all functions to run the extension
+- extension contain the main function of the programm
+- config.js contain actual handle languages
 
 ### 1.0.1
 

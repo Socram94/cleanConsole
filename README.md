@@ -2,7 +2,7 @@
 
 This extension is used to delete all log line in a single file. You can launch this extension on all files you want to clean.
 
-There is an example bellow with a TypeScript file and a C file ( The popup has been deleted for better experience )  :
+There is an example bellow with a TypeScript file and a C file (The popup has been deleted for better experience) :
 
 ![How it works](images/cleanConsole.gif)
 

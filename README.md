@@ -16,13 +16,16 @@ Regex can have some problems, you can add an issue or submit a pull request to c
 
 ## Release Notes
 
+
+### 1.0.1
+
+Bug fix
+
 ### 1.0.0
 
 This is the first release of the extension, you can use it only feature without moderation
 
-### 1.1.0
 
-Bug fix
 
 ## Install
 

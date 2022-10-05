@@ -28,9 +28,10 @@
     "help delete logs"
   ],
   "categories": [
-    "Other"
+    "Formatters"
   ],
   "activationEvents": [
+    "onCommand:cleanconsole.cleanConsoleList",
     "onCommand:cleanconsole.cleanConsole"
   ],
   "main": "src/extension.js",
@@ -39,6 +40,10 @@
       {
         "command": "cleanconsole.cleanConsole",
         "title": "Clean Console"
+      },
+      {
+        "command": "cleanconsole.cleanConsoleList",
+        "title": "Clean Console List"
       }
     ]
   },

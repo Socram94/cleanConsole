@@ -3,7 +3,7 @@
   "displayName": "Clean Console",
   "description": "Clean console is a little tool used to clean the console output by delete log command in your current code file.",
   "publisher": "Socram94",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "Alex"
   },

@@ -32,6 +32,7 @@ const handleLanguages = {
 	"vbnet": /Console.WriteLine\([^\s]+\)?/g,
 	"xquery": /trace\([^\s]+\)?/g,
 	"solidity": /console.[^\s]+\([^\s]+\)?/g,
+	"vue": /console.[^\s]+\([^\s]+\)?/g,
 }
 
 module.exports = { handleLanguages }
